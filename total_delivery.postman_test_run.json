@@ -1,0 +1,1099 @@
+{
+	"id": "8510a36b-7836-4e40-afa6-5e91a6b32e2c",
+	"name": "Total Delivery",
+	"timestamp": "2023-09-11T07:32:34.211Z",
+	"collection_id": "26133810-840610a5-6186-4d67-9dc9-52187107c5ab",
+	"folder_id": 0,
+	"environment_id": "26133810-d101681f-7ff7-4447-bccd-c5b2d431e2bb",
+	"totalPass": 92,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2023-09-11T07:32:31.576Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "dba0b228-1085-4496-a19e-1b7166570e38",
+			"name": "List Delivery Point - Successful Response (200)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/delivery-point",
+			"time": 563,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Response is an array with at least one element": true,
+				"Validate the scan_loc field in each element of the response": true,
+				"Response time is less than 1000ms": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an array with at least one element": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate the scan_loc field in each element of the response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				563
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Response is an array with at least one element": true,
+					"Validate the scan_loc field in each element of the response": true,
+					"Response time is less than 1000ms": true
+				}
+			]
+		},
+		{
+			"id": "fa0dc159-a8af-4e13-9b01-e7b1bfba6315",
+			"name": "List Delivery Point - Unauthorized Response (401)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/delivery-point",
+			"time": 10,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Response status code is 401": true,
+				"Response has the required fields": true,
+				"Access is a boolean value": true,
+				"Message is a non-empty string": true,
+				"Response time is less than 200ms": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Access is a boolean value": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message is a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Response status code is 401": true,
+					"Response has the required fields": true,
+					"Access is a boolean value": true,
+					"Message is a non-empty string": true,
+					"Response time is less than 200ms": true
+				}
+			]
+		},
+		{
+			"id": "22d21cc3-c62f-4d85-962b-ed2a4a7d5e54",
+			"name": "List Courier Owner - Successful Response (200)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/courier-owner",
+			"time": 33,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Validate the response body is an array": true,
+				"Each object in the array has the required fields - location_id and location_name": true,
+				"location_id should be a non-empty string": true,
+				"location_name is a non-empty string": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate the response body is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each object in the array has the required fields - location_id and location_name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"location_id should be a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"location_name is a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Validate the response body is an array": true,
+					"Each object in the array has the required fields - location_id and location_name": true,
+					"location_id should be a non-empty string": true,
+					"location_name is a non-empty string": true
+				}
+			]
+		},
+		{
+			"id": "b7eb33da-c355-465c-8614-130102175a53",
+			"name": "List Courier Owner - Unauthorized Response (401)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/courier-owner",
+			"time": 13,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Response status code is 401": true,
+				"Response has the required fields": true,
+				"Access is a boolean value": true,
+				"Message is a non-empty string": true,
+				"Response time is less than 200ms": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Access is a boolean value": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message is a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Response status code is 401": true,
+					"Response has the required fields": true,
+					"Access is a boolean value": true,
+					"Message is a non-empty string": true,
+					"Response time is less than 200ms": true
+				}
+			]
+		},
+		{
+			"id": "3ebd3ff3-b890-4c04-a291-a68fb0af4ed0",
+			"name": "Summary - Successful Response (200)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/summary",
+			"time": 69,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response schema is valid": true,
+				"Response status code is 200": true,
+				"Total Items is a non-negative integer": true,
+				"Validate the presence and length of the 'contents' array": true
+			},
+			"testPassFailCounts": {
+				"Response schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total Items is a non-negative integer": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate the presence and length of the 'contents' array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				69
+			],
+			"allTests": [
+				{
+					"Response schema is valid": true,
+					"Response status code is 200": true,
+					"Total Items is a non-negative integer": true,
+					"Validate the presence and length of the 'contents' array": true
+				}
+			]
+		},
+		{
+			"id": "05f8c534-f31a-4f33-9c5e-b45d8fabf80e",
+			"name": "Summary - Unauthorized Response (401)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/summary",
+			"time": 28,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Schema is valid": true,
+				"Response status code is 401": true,
+				"Access field is a boolean": true,
+				"The message field is a string": true,
+				"Response has the required fields - access and message": true,
+				"Response time is less than 200ms": true
+			},
+			"testPassFailCounts": {
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Access field is a boolean": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The message field is a string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required fields - access and message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Schema is valid": true,
+					"Response status code is 401": true,
+					"Access field is a boolean": true,
+					"The message field is a string": true,
+					"Response has the required fields - access and message": true,
+					"Response time is less than 200ms": true
+				}
+			]
+		},
+		{
+			"id": "e76b3837-efcf-4c07-9bc2-46c297c90a89",
+			"name": "Summary - Invalid Date (400)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/summary",
+			"time": 33,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response has the required field - message": true,
+				"Message is a non-empty string": true,
+				"Response time is less than 200ms": true,
+				"Response body is not empty": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required field - message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message is a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response body is not empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response has the required field - message": true,
+					"Message is a non-empty string": true,
+					"Response time is less than 200ms": true,
+					"Response body is not empty": true
+				}
+			]
+		},
+		{
+			"id": "769e0a70-49b3-4a09-a0ff-c780923726e0",
+			"name": "Summary - Invalid Datatype (400)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/summary",
+			"time": 36,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response has the required field - message": true,
+				"Message is a non-empty string": true,
+				"Response time is less than 200ms": true,
+				"Response body is not empty": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required field - message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message is a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response body is not empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				36
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response has the required field - message": true,
+					"Message is a non-empty string": true,
+					"Response time is less than 200ms": true,
+					"Response body is not empty": true
+				}
+			]
+		},
+		{
+			"id": "172bad07-a622-4c90-9bc0-268b1db8fe90",
+			"name": "Detail - Successful Response (200)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
+			"time": 156,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response has a valid content type": true,
+				"Response body structure is valid": true,
+				"Content object structure is valid": true,
+				"Content object structure has [pod_approve_status] payload": true,
+				"Response time is within acceptable range": true
+			},
+			"testPassFailCounts": {
+				"Response has a valid content type": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response body structure is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content object structure is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content object structure has [pod_approve_status] payload": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is within acceptable range": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				156
+			],
+			"allTests": [
+				{
+					"Response has a valid content type": true,
+					"Response body structure is valid": true,
+					"Content object structure is valid": true,
+					"Content object structure has [pod_approve_status] payload": true,
+					"Response time is within acceptable range": true
+				}
+			]
+		},
+		{
+			"id": "f04bcea6-8688-48b8-a1be-c0363503f158",
+			"name": "Detail - Unauthorized Response (401)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
+			"time": 37,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true,
+				"Response is an object with access and message properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an object with access and message properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status code is 401": true,
+					"Response is an object with access and message properties": true
+				}
+			]
+		},
+		{
+			"id": "bed398c7-3386-47f4-97c0-076370bf1dad",
+			"name": "Detail - Export Mode True (200)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
+			"time": 83,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 5000ms": true,
+				"Response is an array": true,
+				"Each element in the array has the required properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 5000ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each element in the array has the required properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				83
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 5000ms": true,
+					"Response is an array": true,
+					"Each element in the array has the required properties": true
+				}
+			]
+		},
+		{
+			"id": "4f3938ea-a8e2-42b5-9ff3-8c7346f4b388",
+			"name": "Detail - Export Mode Null (400)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
+			"time": 24,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response is an object with a message property": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an object with a message property": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				24
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response is an object with a message property": true
+				}
+			]
+		},
+		{
+			"id": "6988deb5-f5c6-4761-8b21-e056892e33d4",
+			"name": "Detail - Invalid Date (400)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
+			"time": 24,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is an object with a message property": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an object with a message property": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				24
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is an object with a message property": true
+				}
+			]
+		},
+		{
+			"id": "568c92c1-1ad9-4a59-92f0-d7e288f0a6d2",
+			"name": "Detail - Invalid Data Types Page and Size (400)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response is an object with a message property": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an object with a message property": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response is an object with a message property": true
+				}
+			]
+		},
+		{
+			"id": "662e5c67-42eb-4b9b-8147-b3962e9f4f77",
+			"name": "Export All - Successful Response (200)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
+			"time": 97,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Schema is valid": true,
+				"Response status code is 200": true,
+				"waybill_number is a non-empty string": true,
+				"sender_phone is a valid phone number format": true,
+				"Consignee name is a non-empty string": true
+			},
+			"testPassFailCounts": {
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"waybill_number is a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"sender_phone is a valid phone number format": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Consignee name is a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				97
+			],
+			"allTests": [
+				{
+					"Schema is valid": true,
+					"Response status code is 200": true,
+					"waybill_number is a non-empty string": true,
+					"sender_phone is a valid phone number format": true,
+					"Consignee name is a non-empty string": true
+				}
+			]
+		},
+		{
+			"id": "903959d1-38d5-4c98-a8af-c9346f6fb734",
+			"name": "Export All - Unauthorized Response (401)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
+			"time": 11,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Schema is valid": true,
+				"Response status code is 401": true,
+				"Access field is a boolean": true,
+				"The message field is a string": true,
+				"Response has the required fields - access and message": true,
+				"Response time is less than 200ms": true
+			},
+			"testPassFailCounts": {
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Access field is a boolean": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The message field is a string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required fields - access and message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Schema is valid": true,
+					"Response status code is 401": true,
+					"Access field is a boolean": true,
+					"The message field is a string": true,
+					"Response has the required fields - access and message": true,
+					"Response time is less than 200ms": true
+				}
+			]
+		},
+		{
+			"id": "b3426654-7a73-4ac6-b2fe-3f343c06f04e",
+			"name": "Export All - Invalid Date (400)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response has the required field - message": true,
+				"Message should be a non-empty string": true,
+				"Response time is less than 500ms": true,
+				"Validate response format": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required field - message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message should be a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate response format": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response has the required field - message": true,
+					"Message should be a non-empty string": true,
+					"Response time is less than 500ms": true,
+					"Validate response format": true
+				}
+			]
+		},
+		{
+			"id": "4452c8d9-3662-437d-9048-e89069229a15",
+			"name": "Export All - Invalid Datatype date_from and date_until (400)",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response has the required field - message": true,
+				"Message should be a non-empty string": true,
+				"Response time is less than 500ms": true,
+				"Validate response format": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required field - message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message should be a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate response format": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response has the required field - message": true,
+					"Message should be a non-empty string": true,
+					"Response time is less than 500ms": true,
+					"Validate response format": true
+				}
+			]
+		},
+		{
+			"id": "2fa345f6-6594-409f-937a-ba5e198fb9fb",
+			"name": "Export All - Missing Courier Owner and Custom Delivery Point",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response has the required field - message": true,
+				"Message should be a non-empty string": true,
+				"Response time is less than 500ms": true,
+				"Validate response format": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required field - message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message should be a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate response format": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response has the required field - message": true,
+					"Message should be a non-empty string": true,
+					"Response time is less than 500ms": true,
+					"Validate response format": true
+				}
+			]
+		},
+		{
+			"id": "30eb5c33-e70d-4b5c-87d2-2c477be6ecac",
+			"name": "Export All - Date From -> Null || Custom Delivery Point -> True",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
+			"time": 12,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response has the required field - message": true,
+				"Message should be a non-empty string": true,
+				"Response time is less than 500ms": true,
+				"Validate response format": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required field - message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message should be a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate response format": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response has the required field - message": true,
+					"Message should be a non-empty string": true,
+					"Response time is less than 500ms": true,
+					"Validate response format": true
+				}
+			]
+		},
+		{
+			"id": "cffa337a-3e33-4f5a-85dd-f68bc17cf800",
+			"name": "Export All - Date Until -> Null || Courier Owner -> Null",
+			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response has the required field - message": true,
+				"Message should be a non-empty string": true,
+				"Response time is less than 500ms": true,
+				"Validate response format": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required field - message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message should be a non-empty string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate response format": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response has the required field - message": true,
+					"Message should be a non-empty string": true,
+					"Response time is less than 500ms": true,
+					"Validate response format": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1296,
+	"collection": {
+		"requests": [
+			{
+				"id": "dba0b228-1085-4496-a19e-1b7166570e38",
+				"method": "GET"
+			},
+			{
+				"id": "fa0dc159-a8af-4e13-9b01-e7b1bfba6315",
+				"method": "GET"
+			},
+			{
+				"id": "22d21cc3-c62f-4d85-962b-ed2a4a7d5e54",
+				"method": "GET"
+			},
+			{
+				"id": "b7eb33da-c355-465c-8614-130102175a53",
+				"method": "GET"
+			},
+			{
+				"id": "3ebd3ff3-b890-4c04-a291-a68fb0af4ed0",
+				"method": "POST"
+			},
+			{
+				"id": "05f8c534-f31a-4f33-9c5e-b45d8fabf80e",
+				"method": "POST"
+			},
+			{
+				"id": "e76b3837-efcf-4c07-9bc2-46c297c90a89",
+				"method": "POST"
+			},
+			{
+				"id": "769e0a70-49b3-4a09-a0ff-c780923726e0",
+				"method": "POST"
+			},
+			{
+				"id": "172bad07-a622-4c90-9bc0-268b1db8fe90",
+				"method": "POST"
+			},
+			{
+				"id": "f04bcea6-8688-48b8-a1be-c0363503f158",
+				"method": "POST"
+			},
+			{
+				"id": "bed398c7-3386-47f4-97c0-076370bf1dad",
+				"method": "POST"
+			},
+			{
+				"id": "4f3938ea-a8e2-42b5-9ff3-8c7346f4b388",
+				"method": "POST"
+			},
+			{
+				"id": "6988deb5-f5c6-4761-8b21-e056892e33d4",
+				"method": "POST"
+			},
+			{
+				"id": "568c92c1-1ad9-4a59-92f0-d7e288f0a6d2",
+				"method": "POST"
+			},
+			{
+				"id": "662e5c67-42eb-4b9b-8147-b3962e9f4f77",
+				"method": "POST"
+			},
+			{
+				"id": "903959d1-38d5-4c98-a8af-c9346f6fb734",
+				"method": "POST"
+			},
+			{
+				"id": "b3426654-7a73-4ac6-b2fe-3f343c06f04e",
+				"method": "POST"
+			},
+			{
+				"id": "4452c8d9-3662-437d-9048-e89069229a15",
+				"method": "POST"
+			},
+			{
+				"id": "2fa345f6-6594-409f-937a-ba5e198fb9fb",
+				"method": "POST"
+			},
+			{
+				"id": "30eb5c33-e70d-4b5c-87d2-2c477be6ecac",
+				"method": "POST"
+			},
+			{
+				"id": "cffa337a-3e33-4f5a-85dd-f68bc17cf800",
+				"method": "POST"
+			}
+		]
+	}
+}

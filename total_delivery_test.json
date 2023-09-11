@@ -1,1099 +1,1809 @@
 {
-	"id": "8510a36b-7836-4e40-afa6-5e91a6b32e2c",
-	"name": "Total Delivery",
-	"timestamp": "2023-09-11T07:32:34.211Z",
-	"collection_id": "26133810-840610a5-6186-4d67-9dc9-52187107c5ab",
-	"folder_id": 0,
-	"environment_id": "26133810-d101681f-7ff7-4447-bccd-c5b2d431e2bb",
-	"totalPass": 92,
-	"delay": 0,
-	"persist": true,
-	"status": "finished",
-	"startedAt": "2023-09-11T07:32:31.576Z",
-	"totalFail": 0,
-	"results": [
+	"info": {
+		"_postman_id": "840610a5-6186-4d67-9dc9-52187107c5ab",
+		"name": "Total Delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26133810",
+		"_collection_link": "https://grey-capsule-627209.postman.co/workspace/Ondelivery-API's-Collection~6fe827df-c6a0-4641-985f-0cf1c63c59c9/collection/26133810-840610a5-6186-4d67-9dc9-52187107c5ab?action=share&source=collection_link&creator=26133810"
+	},
+	"item": [
 		{
-			"id": "dba0b228-1085-4496-a19e-1b7166570e38",
-			"name": "List Delivery Point - Successful Response (200)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/delivery-point",
-			"time": 563,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Response status code is 200": true,
-				"Response is an array with at least one element": true,
-				"Validate the scan_loc field in each element of the response": true,
-				"Response time is less than 1000ms": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response is an array with at least one element": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Validate the scan_loc field in each element of the response": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 1000ms": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				563
-			],
-			"allTests": [
+			"name": "List Delivery Point",
+			"item": [
 				{
-					"Response status code is 200": true,
-					"Response is an array with at least one element": true,
-					"Validate the scan_loc field in each element of the response": true,
-					"Response time is less than 1000ms": true
+					"name": "List Delivery Point - Successful Response (200)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response is an array with at least one element\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array');",
+									"  pm.expect(responseData).to.have.lengthOf.at.least(1);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate the scan_loc field in each element of the response\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"",
+									"    responseData.forEach(function (element) {",
+									"        pm.expect(element.scan_loc).to.exist.and.to.be.a('string');",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/delivery-point",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"delivery-point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Delivery Point - Unauthorized Response (401)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 401\", function () {",
+									"    pm.expect(pm.response.code).to.equal(401);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.access).to.exist;",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Access is a boolean value\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData.access).to.be.a('boolean');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{invalidToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/delivery-point",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"delivery-point"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"id": "fa0dc159-a8af-4e13-9b01-e7b1bfba6315",
-			"name": "List Delivery Point - Unauthorized Response (401)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/delivery-point",
-			"time": 10,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"Response status code is 401": true,
-				"Response has the required fields": true,
-				"Access is a boolean value": true,
-				"Message is a non-empty string": true,
-				"Response time is less than 200ms": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 401": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required fields": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Access is a boolean value": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message is a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 200ms": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				10
-			],
-			"allTests": [
+			"name": "List Courier Owner",
+			"item": [
 				{
-					"Response status code is 401": true,
-					"Response has the required fields": true,
-					"Access is a boolean value": true,
-					"Message is a non-empty string": true,
-					"Response time is less than 200ms": true
+					"name": "List Courier Owner - Successful Response (200)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate the response body is an array\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Each object in the array has the required fields - location_id and location_name\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"",
+									"    responseData.forEach(function (item) {",
+									"        pm.expect(item).to.have.property('location_id').that.is.a('string');",
+									"        pm.expect(item).to.have.property('location_name').that.is.a('string');",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"location_id should be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function (item) {",
+									"        pm.expect(item.location_id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"location_name is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    responseData.forEach(function (item) {",
+									"        pm.expect(item.location_name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"location_name should not be empty\");",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/courier-owner",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"courier-owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Courier Owner - Unauthorized Response (401)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 401\", function () {",
+									"    pm.expect(pm.response.code).to.equal(401);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.access).to.exist;",
+									"  pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Access is a boolean value\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.access).to.be.a('boolean');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{invalidToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/courier-owner",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"courier-owner"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"id": "22d21cc3-c62f-4d85-962b-ed2a4a7d5e54",
-			"name": "List Courier Owner - Successful Response (200)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/courier-owner",
-			"time": 33,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Response status code is 200": true,
-				"Validate the response body is an array": true,
-				"Each object in the array has the required fields - location_id and location_name": true,
-				"location_id should be a non-empty string": true,
-				"location_name is a non-empty string": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Validate the response body is an array": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Each object in the array has the required fields - location_id and location_name": {
-					"pass": 1,
-					"fail": 0
-				},
-				"location_id should be a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"location_name is a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				33
-			],
-			"allTests": [
+			"name": "Summary",
+			"item": [
 				{
-					"Response status code is 200": true,
-					"Validate the response body is an array": true,
-					"Each object in the array has the required fields - location_id and location_name": true,
-					"location_id should be a non-empty string": true,
-					"location_name is a non-empty string": true
+					"name": "Summary - Successful Response (200)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response schema is valid\", function () {",
+									"    var schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            totalItems: {",
+									"                type: \"number\"",
+									"            },",
+									"            contents: {",
+									"                type: \"array\",",
+									"                items: {",
+									"                    type: \"object\",",
+									"                    properties: {",
+									"                        agent_name: {",
+									"                            type: \"string\"",
+									"                        },",
+									"                        agent_owner: {",
+									"                            type: \"string\"",
+									"                        },",
+									"                        total_waybill: {",
+									"                            type: \"number\"",
+									"                        },",
+									"                        total_weight: {",
+									"                            type: \"number\"",
+									"                        },",
+									"                        total_freight_charges: {",
+									"                            type: \"number\"",
+									"                        },",
+									"                        total_packing_fee: {",
+									"                            type: \"number\"",
+									"                        },",
+									"                        total_insurance_fee: {",
+									"                            type: \"number\"",
+									"                        },",
+									"                        total_goods_value: {",
+									"                            type: \"number\"",
+									"                        },",
+									"                        total_fee: {",
+									"                            type: \"number\"",
+									"                        }",
+									"                    },",
+									"                    required: [\"agent_name\", \"agent_owner\", \"total_waybill\", \"total_weight\", \"total_freight_charges\", \"total_packing_fee\", \"total_insurance_fee\", \"total_goods_value\", \"total_fee\"]",
+									"                }",
+									"            },",
+									"            totalPages: {",
+									"                type: \"number\"",
+									"            },",
+									"            currentPage: {",
+									"                type: \"number\"",
+									"            }",
+									"        },",
+									"        required: [\"totalItems\", \"contents\", \"totalPages\", \"currentPage\"]",
+									"    };",
+									"",
+									"    var response = pm.response.json();",
+									"    pm.expect(tv4.validate(response, schema)).to.be.true;",
+									"});",
+									"",
+									"",
+									"",
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Total Items is a non-negative integer\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.totalItems).to.be.a('number');",
+									"    pm.expect(responseData.totalItems).to.be.at.least(0, \"Total Items should be non-negative\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate the presence and length of the 'contents' array\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.contents).to.exist.and.to.be.an('array');",
+									"  pm.expect(responseData.contents.length).to.equal(1);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": 0,\n  \"size\": 10,\n  \"date_from\": \"2023-08-01\",\n  \"date_until\": \"2023-08-14\",\n  \"owner_courier\": \"DC Jakarta Utara\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"custom_delivery_point\": [ \n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/summary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Summary - Unauthorized Response (401)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Schema is valid\", function () {",
+									"  var schema = {",
+									"    type: \"object\",",
+									"    properties: {",
+									"      access: {",
+									"        type: \"boolean\"",
+									"      },",
+									"      message: {",
+									"        type: \"string\"",
+									"      }",
+									"    },",
+									"    required: [\"access\", \"message\"],",
+									"  };",
+									"",
+									"  var response = pm.response.json();",
+									"  pm.expect(tv4.validate(response, schema)).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response status code is 401\", function () {",
+									"  pm.expect(pm.response.code).to.equal(401);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Access field is a boolean\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData.access).to.be.a('boolean');",
+									"});",
+									"",
+									"",
+									"pm.test(\"The message field is a string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields - access and message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.access).to.exist;",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{invalidToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": 0,\n  \"size\": 10,\n  \"date_from\": \"2023-06-10\",\n  \"date_until\": \"2023-06-25\",\n  \"courier_owner\": \"DC Jakarta Utara\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"custom_delivery_point\": [\n    \"001\",\n    \"005\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/summary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Summary - Invalid Date (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.equal(400);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body is not empty\", function () {",
+									"    pm.expect(pm.response.text()).to.not.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": 0,\n  \"size\": 10,\n  \"date_from\": \"2023-06-30\",\n  \"date_until\": \"2023-06-25\",\n  \"courier_owner\": \"DC Jakarta Utara\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"custom_delivery_point\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/summary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Summary - Invalid Datatype (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.equal(400);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body is not empty\", function () {",
+									"    pm.expect(pm.response.text()).to.not.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": \"zero\",  // Invalid data type for \"page\"\n  \"size\": \"ten\",   // Invalid data type for \"size\"\n  \"date_from\": \"2023-06-10\",\n  \"date_until\": \"2023-06-25\",\n  \"owner_courier\": 123,  // Invalid data type for \"owner_courier\"\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"custom_delivery_point\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/summary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"summary"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"id": "b7eb33da-c355-465c-8614-130102175a53",
-			"name": "List Courier Owner - Unauthorized Response (401)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/courier-owner",
-			"time": 13,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"Response status code is 401": true,
-				"Response has the required fields": true,
-				"Access is a boolean value": true,
-				"Message is a non-empty string": true,
-				"Response time is less than 200ms": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 401": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required fields": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Access is a boolean value": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message is a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 200ms": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				13
-			],
-			"allTests": [
+			"name": "Detail",
+			"item": [
 				{
-					"Response status code is 401": true,
-					"Response has the required fields": true,
-					"Access is a boolean value": true,
-					"Message is a non-empty string": true,
-					"Response time is less than 200ms": true
+					"name": "Detail - Successful Response (200)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test to check if the response has a valid content type",
+									"pm.test(\"Response has a valid content type\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"",
+									"",
+									"var responseJSON = pm.response.json();",
+									"",
+									"// Test the response body structure and values",
+									"pm.test(\"Response body structure is valid\", function () {",
+									"    pm.expect(responseJSON).has.property('totalItems');",
+									"    pm.expect(responseJSON).has.property('contents');",
+									"    pm.expect(responseJSON).has.property('totalPages');",
+									"    pm.expect(responseJSON).has.property('currentPage');",
+									"});",
+									"",
+									"// checking that each content has the required properties",
+									"pm.test(\"Content object structure is valid\", function () {",
+									"    responseJSON.contents.forEach((content) => {",
+									"        pm.expect(content).has.property('waybill_number');",
+									"        pm.expect(content).has.property('scan_loc');",
+									"        pm.expect(content).has.property('scanned_by');",
+									"        pm.expect(content).has.property('agent_id');",
+									"        pm.expect(content).has.property('courier_id');",
+									"        pm.expect(content).has.property('courier_name');",
+									"        pm.expect(content).has.property('updated_at');",
+									"        pm.expect(content).has.property('resi_3p');",
+									"        pm.expect(content).has.property('created_at');",
+									"        pm.expect(content).has.property('status_courier');",
+									"        pm.expect(content).has.property('origin');",
+									"        pm.expect(content).has.property('sender_name');",
+									"        pm.expect(content).has.property('sender_address');",
+									"        pm.expect(content).has.property('sender_phone');",
+									"        pm.expect(content).has.property('sender_city');",
+									"        pm.expect(content).has.property('sender_province');",
+									"        pm.expect(content).has.property('sender_zipcode');",
+									"        pm.expect(content).has.property('consignee_name');",
+									"        pm.expect(content).has.property('consignee_address');",
+									"        pm.expect(content).has.property('consignee_phone');",
+									"        pm.expect(content).has.property('consignee_city');",
+									"        pm.expect(content).has.property('consignee_province');",
+									"        pm.expect(content).has.property('consignee_zipcode');",
+									"        pm.expect(content).has.property('consignee_district');",
+									"        pm.expect(content).has.property('freight_charge');",
+									"        pm.expect(content).has.property('discount');",
+									"        pm.expect(content).has.property('insurance_fee');",
+									"        pm.expect(content).has.property('packing_fee');",
+									"        pm.expect(content).has.property('surcharge');",
+									"        pm.expect(content).has.property('total_fee');",
+									"        pm.expect(content).has.property('goods_value');",
+									"        pm.expect(content).has.property('goods_koli');",
+									"        pm.expect(content).has.property('goods_weight');",
+									"        pm.expect(content).has.property('goods_desc');",
+									"        pm.expect(content).has.property('payment_type');",
+									"        pm.expect(content).has.property('cancel_status');",
+									"        pm.expect(content).has.property('reference_number');",
+									"        pm.expect(content).has.property('owner_agent');",
+									"        pm.expect(content).has.property('courier_owner');",
+									"        pm.expect(content).has.property('status_actual');",
+									"        pm.expect(content).has.property('side_note');",
+									"        pm.expect(content).has.property('barcode');",
+									"        pm.expect(content).has.property('service');",
+									"        pm.expect(content).has.property('updated_location');",
+									"        pm.expect(content).has.property('last_scan');",
+									"        pm.expect(content).has.property('pod_approve_status');",
+									"        pm.expect(content).has.property('tlc_origin');",
+									"        pm.expect(content).has.property('tlc_destination');",
+									"        pm.expect(content).has.property('consignee_sub_district');",
+									"        pm.expect(content).has.property('consignee_urban');",
+									"    })",
+									"});",
+									"",
+									"// checking that each content has the required properties",
+									"pm.test(\"Content object structure has [pod_approve_status] payload\", function () {",
+									"    responseJSON.contents.forEach((content) => {",
+									"        pm.expect(content).has.property('pod_approve_status');",
+									"    })",
+									"});",
+									"",
+									"",
+									"",
+									"// Test to check if the response time is within an acceptable range",
+									"pm.test(\"Response time is within acceptable range\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000); // change the value as per your acceptable range",
+									"});",
+									"",
+									"",
+									"",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>Waybill Number</th>",
+									"        <th>Scan Location</th>",
+									"        <th>Scanned By</th>",
+									"        <th>Agent ID</th>",
+									"        <th>Courier ID</th>",
+									"        <th>Courier Name</th>",
+									"        <th>Updated At</th>",
+									"        <th>Resi 3P</th>",
+									"        <th>Created At</th>",
+									"        <th>Status Courier</th>",
+									"        <th>Origin</th>",
+									"        <th>Sender Name</th>",
+									"        <th>Sender Address</th>",
+									"        <th>Sender Phone</th>",
+									"        <th>Sender City</th>",
+									"        <th>Sender Province</th>",
+									"        <th>Sender Zipcode</th>",
+									"        <th>Consignee Name</th>",
+									"        <th>Consignee Address</th>",
+									"        <th>Consignee Phone</th>",
+									"        <th>Consignee City</th>",
+									"        <th>Consignee Province</th>",
+									"        <th>Consignee Zipcode</th>",
+									"        <th>Consignee District</th>",
+									"        <th>Freight Charge</th>",
+									"        <th>Discount</th>",
+									"        <th>Insurance Fee</th>",
+									"        <th>Packing Fee</th>",
+									"        <th>Surcharge</th>",
+									"        <th>Total Fee</th>",
+									"        <th>Goods Value</th>",
+									"        <th>Goods Koli</th>",
+									"        <th>Goods Weight</th>",
+									"        <th>Goods Description</th>",
+									"        <th>Payment Type</th>",
+									"        <th>Cancel Status</th>",
+									"        <th>Reference Number</th>",
+									"        <th>Owner Agent</th>",
+									"        <th>Courier Owner</th>",
+									"        <th>Status Actual</th>",
+									"        <th>Side Note</th>",
+									"        <th>Barcode</th>",
+									"        <th>Service</th>",
+									"        <th>Updated Location</th>",
+									"        <th>Last Scan</th>",
+									"        <th>POD Approve Status</th>",
+									"        <th>TLC Origin</th>",
+									"        <th>TLC Destination</th>",
+									"        <th>Consignee Sub District</th>",
+									"        <th>Consignee Urban</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response.contents}}",
+									"        <tr>",
+									"            <td>{{waybill_number}}</td>",
+									"            <td>{{scan_loc}}</td>",
+									"            <td>{{scanned_by}}</td>",
+									"            <td>{{agent_id}}</td>",
+									"            <td>{{courier_id}}</td>",
+									"            <td>{{courier_name}}</td>",
+									"            <td>{{updated_at}}</td>",
+									"            <td>{{resi_3p}}</td>",
+									"            <td>{{created_at}}</td>",
+									"            <td>{{status_courier}}</td>",
+									"            <td>{{origin}}</td>",
+									"            <td>{{sender_name}}</td>",
+									"            <td>{{sender_address}}</td>",
+									"            <td>{{sender_phone}}</td>",
+									"            <td>{{sender_city}}</td>",
+									"            <td>{{sender_province}}</td>",
+									"            <td>{{sender_zipcode}}</td>",
+									"            <td>{{consignee_name}}</td>",
+									"            <td>{{consignee_address}}</td>",
+									"            <td>{{consignee_phone}}</td>",
+									"            <td>{{consignee_city}}</td>",
+									"            <td>{{consignee_province}}</td>",
+									"            <td>{{consignee_zipcode}}</td>",
+									"            <td>{{consignee_district}}</td>",
+									"            <td>{{freight_charge}}</td>",
+									"            <td>{{discount}}</td>",
+									"            <td>{{insurance_fee}}</td>",
+									"            <td>{{packing_fee}}</td>",
+									"            <td>{{surcharge}}</td>",
+									"            <td>{{total_fee}}</td>",
+									"            <td>{{goods_value}}</td>",
+									"            <td>{{goods_koli}}</td>",
+									"            <td>{{goods_weight}}</td>",
+									"            <td>{{goods_desc}}</td>",
+									"            <td>{{payment_type}}</td>",
+									"            <td>{{cancel_status}}</td>",
+									"            <td>{{reference_number}}</td>",
+									"            <td>{{owner_agent}}</td>",
+									"            <td>{{courier_owner}}</td>",
+									"            <td>{{status_actual}}</td>",
+									"            <td>{{side_note}}</td>",
+									"            <td>{{barcode}}</td>",
+									"            <td>{{service}}</td>",
+									"            <td>{{updated_location}}</td>",
+									"            <td>{{last_scan}}</td>",
+									"            <td>{{pod_approve_status}}</td>",
+									"            <td>{{tlc_origin}}</td>",
+									"            <td>{{tlc_destination}}</td>",
+									"            <td>{{consignee_sub_district}}</td>",
+									"            <td>{{consignee_urban}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": 0,\n  \"size\": 10,\n  \"date_from\": \"2023-09-01\",\n  \"date_until\": \"2023-09-01\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"export_mode\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/detail",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail - Unauthorized Response (401)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response is an object with access and message properties\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('object').that.has.all.keys('access', 'message');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{invalidToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": 0,\n  \"size\": 10,\n  \"date_from\": \"2023-06-10\",\n  \"date_until\": \"2023-06-25\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"export_mode\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/detail",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail - Export Mode True (200)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 5000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"pm.test(\"Response is an array\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Each element in the array has the required properties\", function () {",
+									"    pm.response.json().forEach(function (item) {",
+									"        pm.expect(item).to.have.property('waybill_number');",
+									"        pm.expect(item).to.have.property('scan_loc');",
+									"        pm.expect(item).to.have.property('scanned_by');",
+									"        pm.expect(item).to.have.property('agent_id');",
+									"        pm.expect(item).to.have.property('courier_id');",
+									"        pm.expect(item).to.have.property('courier_name');",
+									"        pm.expect(item).to.have.property('updated_at');",
+									"        pm.expect(item).to.have.property('resi_3p');",
+									"        pm.expect(item).to.have.property('created_at');",
+									"        pm.expect(item).to.have.property('status_courier');",
+									"        pm.expect(item).to.have.property('origin');",
+									"        pm.expect(item).to.have.property('sender_name');",
+									"        pm.expect(item).to.have.property('sender_address');",
+									"        pm.expect(item).to.have.property('sender_phone');",
+									"        pm.expect(item).to.have.property('sender_city');",
+									"        pm.expect(item).to.have.property('sender_province');",
+									"        pm.expect(item).to.have.property('sender_zipcode');",
+									"        pm.expect(item).to.have.property('consignee_name');",
+									"        pm.expect(item).to.have.property('consignee_address');",
+									"        pm.expect(item).to.have.property('consignee_phone');",
+									"        pm.expect(item).to.have.property('consignee_city');",
+									"        pm.expect(item).to.have.property('consignee_province');",
+									"        pm.expect(item).to.have.property('consignee_zipcode');",
+									"        pm.expect(item).to.have.property('consignee_district');",
+									"        pm.expect(item).to.have.property('freight_charge');",
+									"        pm.expect(item).to.have.property('discount');",
+									"        pm.expect(item).to.have.property('insurance_fee');",
+									"        pm.expect(item).to.have.property('packing_fee');",
+									"        pm.expect(item).to.have.property('surcharge');",
+									"        pm.expect(item).to.have.property('total_fee');",
+									"        pm.expect(item).to.have.property('goods_value');",
+									"        pm.expect(item).to.have.property('goods_koli');",
+									"        pm.expect(item).to.have.property('goods_weight');",
+									"        pm.expect(item).to.have.property('goods_desc');",
+									"        pm.expect(item).to.have.property('payment_type');",
+									"        pm.expect(item).to.have.property('cancel_status');",
+									"        pm.expect(item).to.have.property('reference_number');",
+									"        pm.expect(item).to.have.property('owner_agent');",
+									"        pm.expect(item).to.have.property('courier_owner');",
+									"        pm.expect(item).to.have.property('status_actual');",
+									"        pm.expect(item).to.have.property('side_note');",
+									"        pm.expect(item).to.have.property('barcode');",
+									"        pm.expect(item).to.have.property('service');",
+									"        pm.expect(item).to.have.property('updated_location');",
+									"        pm.expect(item).to.have.property('last_scan');",
+									"        pm.expect(item).to.have.property('pod_approve_status');",
+									"        pm.expect(item).to.have.property('tlc_origin');",
+									"        pm.expect(item).to.have.property('tlc_destination');",
+									"        pm.expect(item).to.have.property('consignee_sub_district');",
+									"        pm.expect(item).to.have.property('consignee_urban');",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": 0,\n  \"size\": 1,\n  \"date_from\": \"2023-09-01\",\n  \"date_until\": \"2023-09-07\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"export_mode\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/detail",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail - Export Mode Null (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response is an object with a message property\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('object').that.has.property('message');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": 0,\n  \"size\": 1,\n  \"date_from\": \"2023-06-10\",\n  \"date_until\": \"2023-06-25\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"export_mode\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/detail",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail - Invalid Date (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response is an object with a message property\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('object').that.has.property('message');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": 0,\n  \"size\": 10,\n  \"date_from\": \"2023-06-30\",\n  \"date_until\": \"2023-06-25\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"export_mode\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/detail",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail - Invalid Data Types Page and Size (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response is an object with a message property\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('object').that.has.property('message');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"page\": \"zero\",\n  \"size\": \"ten\",\n  \"date_from\": \"2023-06-30\",\n  \"date_until\": \"2023-06-25\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"export_mode\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/detail",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"detail"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"id": "3ebd3ff3-b890-4c04-a291-a68fb0af4ed0",
-			"name": "Summary - Successful Response (200)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/summary",
-			"time": 69,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Response schema is valid": true,
-				"Response status code is 200": true,
-				"Total Items is a non-negative integer": true,
-				"Validate the presence and length of the 'contents' array": true
-			},
-			"testPassFailCounts": {
-				"Response schema is valid": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Total Items is a non-negative integer": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Validate the presence and length of the 'contents' array": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				69
-			],
-			"allTests": [
+			"name": "Export All",
+			"item": [
 				{
-					"Response schema is valid": true,
-					"Response status code is 200": true,
-					"Total Items is a non-negative integer": true,
-					"Validate the presence and length of the 'contents' array": true
-				}
-			]
-		},
-		{
-			"id": "05f8c534-f31a-4f33-9c5e-b45d8fabf80e",
-			"name": "Summary - Unauthorized Response (401)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/summary",
-			"time": 28,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"Schema is valid": true,
-				"Response status code is 401": true,
-				"Access field is a boolean": true,
-				"The message field is a string": true,
-				"Response has the required fields - access and message": true,
-				"Response time is less than 200ms": true
-			},
-			"testPassFailCounts": {
-				"Schema is valid": {
-					"pass": 1,
-					"fail": 0
+					"name": "Export All - Successful Response (200)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Schema is valid\", function () {",
+									"  var schema = {",
+									"    type: \"array\",",
+									"    items: {",
+									"      type: \"object\",",
+									"      properties: {",
+									"        waybill_number: { type: \"string\" },",
+									"        scan_loc: { type: \"string\" },",
+									"        scanned_by: { type: \"string\" },",
+									"        agent_id: { type: \"string\" },",
+									"        courier_id: { type: \"string\" },",
+									"        courier_name: { type: \"string\" },",
+									"        updated_at: { type: \"string\" },",
+									"        notes: { type: \"string\" },",
+									"        resi_3p: { type: [\"string\", \"null\"] },",
+									"        created_at: { type: \"string\" },",
+									"        status_courier: { type: \"string\" },",
+									"        origin: { type: \"string\" },",
+									"        sender_name: { type: \"string\" },",
+									"        sender_address: { type: \"string\" },",
+									"        sender_phone: { type: \"string\" },",
+									"        sender_city: { type: \"string\" },",
+									"        sender_province: { type: \"string\" },",
+									"        sender_zipcode: { type: \"string\" },",
+									"        consignee_name: { type: \"string\" },",
+									"        consignee_address: { type: \"string\" },",
+									"        consignee_phone: { type: \"string\" },",
+									"        consignee_city: { type: \"string\" },",
+									"        consignee_province: { type: \"string\" },",
+									"        consignee_zipcode: { type: \"string\" },",
+									"        consignee_district: { type: \"string\" },",
+									"        freight_charge: { type: \"number\" },",
+									"        discount: { type: \"number\" },",
+									"        insurance_fee: { type: \"number\" },",
+									"        packing_fee: { type: \"number\" },",
+									"        surcharge: { type: \"number\" },",
+									"        total_fee: { type: \"number\" },",
+									"        goods_value: { type: \"number\" },",
+									"        goods_koli: { type: \"number\" },",
+									"        goods_weight: { type: \"number\" },",
+									"        goods_desc: { type: \"string\" },",
+									"        payment_type: { type: \"string\" },",
+									"        cancel_status: { type: \"string\" },",
+									"        reference_number: { type: \"string\" },",
+									"        owner_agent: { type: \"string\" },",
+									"        courier_owner: { type: [\"object\", \"null\"] },",
+									"        status_actual: { type: \"string\" },",
+									"        side_note: { type: \"string\" },",
+									"        barcode: { type: \"string\" },",
+									"        service: { type: \"string\" },",
+									"        updated_location: { type: \"string\" },",
+									"        last_scan: { type: \"string\" },",
+									"        pod_approve_status: { type: \"string\" },",
+									"        tlc_origin: { type: \"string\" },",
+									"        tlc_destination: { type: \"string\" },",
+									"        consignee_sub_district: { type: \"string\" },",
+									"        consignee_urban: { type: \"string\" },",
+									"      },",
+									"    },",
+									"  };",
+									"});",
+									"",
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"waybill_number is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function (item) {",
+									"        pm.expect(item.waybill_number).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"sender_phone is a valid phone number format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    responseData.forEach(function(item) {",
+									"        pm.expect(item.sender_phone).to.match(/^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$/);",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Consignee name is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('array');",
+									"  responseData.forEach(function(item) {",
+									"    pm.expect(item.consignee_name).to.be.a('string').and.to.have.lengthOf.at.least(1);",
+									"  });",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date_from\": \"2023-06-10\",\n  \"date_until\": \"2023-06-25\",\n  \"courier_owner\": \"DC Jakarta Utara\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"custom_delivery_point\": [\n    \"001\",\n    \"005\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/export-all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"export-all"
+							]
+						}
+					},
+					"response": []
 				},
-				"Response status code is 401": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Access field is a boolean": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The message field is a string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required fields - access and message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 200ms": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				28
-			],
-			"allTests": [
 				{
-					"Schema is valid": true,
-					"Response status code is 401": true,
-					"Access field is a boolean": true,
-					"The message field is a string": true,
-					"Response has the required fields - access and message": true,
-					"Response time is less than 200ms": true
-				}
-			]
-		},
-		{
-			"id": "e76b3837-efcf-4c07-9bc2-46c297c90a89",
-			"name": "Summary - Invalid Date (400)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/summary",
-			"time": 33,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response has the required field - message": true,
-				"Message is a non-empty string": true,
-				"Response time is less than 200ms": true,
-				"Response body is not empty": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
+					"name": "Export All - Unauthorized Response (401)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Schema is valid\", function () {",
+									"  var schema = {",
+									"    type: \"object\",",
+									"    properties: {",
+									"      access: {",
+									"        type: \"boolean\"",
+									"      },",
+									"      message: {",
+									"        type: \"string\"",
+									"      }",
+									"    },",
+									"    required: [\"access\", \"message\"],",
+									"  };",
+									"",
+									"  var response = pm.response.json();",
+									"  pm.expect(tv4.validate(response, schema)).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response status code is 401\", function () {",
+									"  pm.expect(pm.response.code).to.equal(401);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Access field is a boolean\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData.access).to.be.a('boolean');",
+									"});",
+									"",
+									"",
+									"pm.test(\"The message field is a string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields - access and message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.access).to.exist;",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{invalidToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date_from\": \"2023-06-10\",\n  \"date_until\": \"2023-06-25\",\n  \"courier_owner\": \"DC Jakarta Utara\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"custom_delivery_point\": [\n    \"001\",\n    \"005\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/export-all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"export-all"
+							]
+						}
+					},
+					"response": []
 				},
-				"Response has the required field - message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message is a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 200ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response body is not empty": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				33
-			],
-			"allTests": [
 				{
-					"Response status code is 400": true,
-					"Response has the required field - message": true,
-					"Message is a non-empty string": true,
-					"Response time is less than 200ms": true,
-					"Response body is not empty": true
-				}
-			]
-		},
-		{
-			"id": "769e0a70-49b3-4a09-a0ff-c780923726e0",
-			"name": "Summary - Invalid Datatype (400)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/summary",
-			"time": 36,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response has the required field - message": true,
-				"Message is a non-empty string": true,
-				"Response time is less than 200ms": true,
-				"Response body is not empty": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
+					"name": "Export All - Invalid Date (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"  pm.expect(pm.response.code).to.equal(400);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.not.be.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message should be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate response format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date_from\": \"2023-06-30\",\n  \"date_until\": \"2023-06-25\",\n  \"courier_owner\": \"DC Jakarta Utara\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"custom_delivery_point\": [\n    \"001\",\n    \"005\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/export-all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"export-all"
+							]
+						}
+					},
+					"response": []
 				},
-				"Response has the required field - message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message is a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 200ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response body is not empty": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				36
-			],
-			"allTests": [
 				{
-					"Response status code is 400": true,
-					"Response has the required field - message": true,
-					"Message is a non-empty string": true,
-					"Response time is less than 200ms": true,
-					"Response body is not empty": true
-				}
-			]
-		},
-		{
-			"id": "172bad07-a622-4c90-9bc0-268b1db8fe90",
-			"name": "Detail - Successful Response (200)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
-			"time": 156,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Response has a valid content type": true,
-				"Response body structure is valid": true,
-				"Content object structure is valid": true,
-				"Content object structure has [pod_approve_status] payload": true,
-				"Response time is within acceptable range": true
-			},
-			"testPassFailCounts": {
-				"Response has a valid content type": {
-					"pass": 1,
-					"fail": 0
+					"name": "Export All - Invalid Datatype date_from and date_until (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"  pm.expect(pm.response.code).to.equal(400);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.not.be.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message should be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate response format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date_from\": \"date_from\",\n  \"date_until\": \"date_until\",\n  \"courier_owner\": \"DC Jakarta Utara\",\n  \"delivery_point\": \"DC Jakarta Utara\",\n  \"custom_delivery_point\": [\n    \"001\",\n    \"005\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/export-all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"export-all"
+							]
+						}
+					},
+					"response": []
 				},
-				"Response body structure is valid": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Content object structure is valid": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Content object structure has [pod_approve_status] payload": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is within acceptable range": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				156
-			],
-			"allTests": [
 				{
-					"Response has a valid content type": true,
-					"Response body structure is valid": true,
-					"Content object structure is valid": true,
-					"Content object structure has [pod_approve_status] payload": true,
-					"Response time is within acceptable range": true
-				}
-			]
-		},
-		{
-			"id": "f04bcea6-8688-48b8-a1be-c0363503f158",
-			"name": "Detail - Unauthorized Response (401)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
-			"time": 37,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"Status code is 401": true,
-				"Response is an object with access and message properties": true
-			},
-			"testPassFailCounts": {
-				"Status code is 401": {
-					"pass": 1,
-					"fail": 0
+					"name": "Export All - Missing Courier Owner and Custom Delivery Point",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"  pm.expect(pm.response.code).to.equal(400);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.not.be.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message should be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate response format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date_from\": \"2023-06-30\",\n  \"date_until\": \"2023-06-25\",\n  \"courier_owner\": \"\",\n  \"delivery_point\": \"\",\n  \"custom_delivery_point\": [\n    \"001\",\n    \"005\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/export-all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"export-all"
+							]
+						}
+					},
+					"response": []
 				},
-				"Response is an object with access and message properties": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				37
-			],
-			"allTests": [
 				{
-					"Status code is 401": true,
-					"Response is an object with access and message properties": true
-				}
-			]
-		},
-		{
-			"id": "bed398c7-3386-47f4-97c0-076370bf1dad",
-			"name": "Detail - Export Mode True (200)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
-			"time": 83,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response time is less than 5000ms": true,
-				"Response is an array": true,
-				"Each element in the array has the required properties": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
+					"name": "Export All - Date From -> Null || Custom Delivery Point -> True",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"  pm.expect(pm.response.code).to.equal(400);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.not.be.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message should be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate response format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date_from\": null,\n  \"date_until\": \"2023-06-25\",\n  \"courier_owner\": \"\",\n  \"delivery_point\": \"\",\n  \"custom_delivery_point\": [true]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/export-all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"export-all"
+							]
+						}
+					},
+					"response": []
 				},
-				"Response time is less than 5000ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response is an array": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Each element in the array has the required properties": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				83
-			],
-			"allTests": [
 				{
-					"Status code is 200": true,
-					"Response time is less than 5000ms": true,
-					"Response is an array": true,
-					"Each element in the array has the required properties": true
-				}
-			]
-		},
-		{
-			"id": "4f3938ea-a8e2-42b5-9ff3-8c7346f4b388",
-			"name": "Detail - Export Mode Null (400)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
-			"time": 24,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response is an object with a message property": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response is an object with a message property": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				24
-			],
-			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response is an object with a message property": true
-				}
-			]
-		},
-		{
-			"id": "6988deb5-f5c6-4761-8b21-e056892e33d4",
-			"name": "Detail - Invalid Date (400)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
-			"time": 24,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status code is 400": true,
-				"Response is an object with a message property": true
-			},
-			"testPassFailCounts": {
-				"Status code is 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response is an object with a message property": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				24
-			],
-			"allTests": [
-				{
-					"Status code is 400": true,
-					"Response is an object with a message property": true
-				}
-			]
-		},
-		{
-			"id": "568c92c1-1ad9-4a59-92f0-d7e288f0a6d2",
-			"name": "Detail - Invalid Data Types Page and Size (400)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/detail",
-			"time": 13,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response is an object with a message property": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response is an object with a message property": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				13
-			],
-			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response is an object with a message property": true
-				}
-			]
-		},
-		{
-			"id": "662e5c67-42eb-4b9b-8147-b3962e9f4f77",
-			"name": "Export All - Successful Response (200)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
-			"time": 97,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Schema is valid": true,
-				"Response status code is 200": true,
-				"waybill_number is a non-empty string": true,
-				"sender_phone is a valid phone number format": true,
-				"Consignee name is a non-empty string": true
-			},
-			"testPassFailCounts": {
-				"Schema is valid": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"waybill_number is a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"sender_phone is a valid phone number format": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Consignee name is a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				97
-			],
-			"allTests": [
-				{
-					"Schema is valid": true,
-					"Response status code is 200": true,
-					"waybill_number is a non-empty string": true,
-					"sender_phone is a valid phone number format": true,
-					"Consignee name is a non-empty string": true
-				}
-			]
-		},
-		{
-			"id": "903959d1-38d5-4c98-a8af-c9346f6fb734",
-			"name": "Export All - Unauthorized Response (401)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
-			"time": 11,
-			"responseCode": {
-				"code": 401,
-				"name": "Unauthorized"
-			},
-			"tests": {
-				"Schema is valid": true,
-				"Response status code is 401": true,
-				"Access field is a boolean": true,
-				"The message field is a string": true,
-				"Response has the required fields - access and message": true,
-				"Response time is less than 200ms": true
-			},
-			"testPassFailCounts": {
-				"Schema is valid": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response status code is 401": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Access field is a boolean": {
-					"pass": 1,
-					"fail": 0
-				},
-				"The message field is a string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required fields - access and message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 200ms": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				11
-			],
-			"allTests": [
-				{
-					"Schema is valid": true,
-					"Response status code is 401": true,
-					"Access field is a boolean": true,
-					"The message field is a string": true,
-					"Response has the required fields - access and message": true,
-					"Response time is less than 200ms": true
-				}
-			]
-		},
-		{
-			"id": "b3426654-7a73-4ac6-b2fe-3f343c06f04e",
-			"name": "Export All - Invalid Date (400)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
-			"time": 14,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response has the required field - message": true,
-				"Message should be a non-empty string": true,
-				"Response time is less than 500ms": true,
-				"Validate response format": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required field - message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message should be a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 500ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Validate response format": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				14
-			],
-			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response has the required field - message": true,
-					"Message should be a non-empty string": true,
-					"Response time is less than 500ms": true,
-					"Validate response format": true
-				}
-			]
-		},
-		{
-			"id": "4452c8d9-3662-437d-9048-e89069229a15",
-			"name": "Export All - Invalid Datatype date_from and date_until (400)",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
-			"time": 13,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response has the required field - message": true,
-				"Message should be a non-empty string": true,
-				"Response time is less than 500ms": true,
-				"Validate response format": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required field - message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message should be a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 500ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Validate response format": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				13
-			],
-			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response has the required field - message": true,
-					"Message should be a non-empty string": true,
-					"Response time is less than 500ms": true,
-					"Validate response format": true
-				}
-			]
-		},
-		{
-			"id": "2fa345f6-6594-409f-937a-ba5e198fb9fb",
-			"name": "Export All - Missing Courier Owner and Custom Delivery Point",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
-			"time": 14,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response has the required field - message": true,
-				"Message should be a non-empty string": true,
-				"Response time is less than 500ms": true,
-				"Validate response format": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required field - message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message should be a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 500ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Validate response format": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				14
-			],
-			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response has the required field - message": true,
-					"Message should be a non-empty string": true,
-					"Response time is less than 500ms": true,
-					"Validate response format": true
-				}
-			]
-		},
-		{
-			"id": "30eb5c33-e70d-4b5c-87d2-2c477be6ecac",
-			"name": "Export All - Date From -> Null || Custom Delivery Point -> True",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
-			"time": 12,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response has the required field - message": true,
-				"Message should be a non-empty string": true,
-				"Response time is less than 500ms": true,
-				"Validate response format": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required field - message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message should be a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 500ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Validate response format": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				12
-			],
-			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response has the required field - message": true,
-					"Message should be a non-empty string": true,
-					"Response time is less than 500ms": true,
-					"Validate response format": true
-				}
-			]
-		},
-		{
-			"id": "cffa337a-3e33-4f5a-85dd-f68bc17cf800",
-			"name": "Export All - Date Until -> Null || Courier Owner -> Null",
-			"url": "https://testapi.ondelivery.id/report/total-delivery/export-all",
-			"time": 13,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Response status code is 400": true,
-				"Response has the required field - message": true,
-				"Message should be a non-empty string": true,
-				"Response time is less than 500ms": true,
-				"Validate response format": true
-			},
-			"testPassFailCounts": {
-				"Response status code is 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response has the required field - message": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Message should be a non-empty string": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response time is less than 500ms": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Validate response format": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				13
-			],
-			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response has the required field - message": true,
-					"Message should be a non-empty string": true,
-					"Response time is less than 500ms": true,
-					"Validate response format": true
+					"name": "Export All - Date Until -> Null || Courier Owner -> Null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {",
+									"  pm.expect(pm.response.code).to.equal(400);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.not.be.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message should be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate response format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date_from\": \"2023-06-25\",\n  \"date_until\": null,\n  \"courier_owner\": null,\n  \"delivery_point\": \"\",\n  \"custom_delivery_point\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/report/total-delivery/export-all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report",
+								"total-delivery",
+								"export-all"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
 	],
-	"count": 1,
-	"totalTime": 1296,
-	"collection": {
-		"requests": [
+	"auth": {
+		"type": "bearer",
+		"bearer": [
 			{
-				"id": "dba0b228-1085-4496-a19e-1b7166570e38",
-				"method": "GET"
-			},
-			{
-				"id": "fa0dc159-a8af-4e13-9b01-e7b1bfba6315",
-				"method": "GET"
-			},
-			{
-				"id": "22d21cc3-c62f-4d85-962b-ed2a4a7d5e54",
-				"method": "GET"
-			},
-			{
-				"id": "b7eb33da-c355-465c-8614-130102175a53",
-				"method": "GET"
-			},
-			{
-				"id": "3ebd3ff3-b890-4c04-a291-a68fb0af4ed0",
-				"method": "POST"
-			},
-			{
-				"id": "05f8c534-f31a-4f33-9c5e-b45d8fabf80e",
-				"method": "POST"
-			},
-			{
-				"id": "e76b3837-efcf-4c07-9bc2-46c297c90a89",
-				"method": "POST"
-			},
-			{
-				"id": "769e0a70-49b3-4a09-a0ff-c780923726e0",
-				"method": "POST"
-			},
-			{
-				"id": "172bad07-a622-4c90-9bc0-268b1db8fe90",
-				"method": "POST"
-			},
-			{
-				"id": "f04bcea6-8688-48b8-a1be-c0363503f158",
-				"method": "POST"
-			},
-			{
-				"id": "bed398c7-3386-47f4-97c0-076370bf1dad",
-				"method": "POST"
-			},
-			{
-				"id": "4f3938ea-a8e2-42b5-9ff3-8c7346f4b388",
-				"method": "POST"
-			},
-			{
-				"id": "6988deb5-f5c6-4761-8b21-e056892e33d4",
-				"method": "POST"
-			},
-			{
-				"id": "568c92c1-1ad9-4a59-92f0-d7e288f0a6d2",
-				"method": "POST"
-			},
-			{
-				"id": "662e5c67-42eb-4b9b-8147-b3962e9f4f77",
-				"method": "POST"
-			},
-			{
-				"id": "903959d1-38d5-4c98-a8af-c9346f6fb734",
-				"method": "POST"
-			},
-			{
-				"id": "b3426654-7a73-4ac6-b2fe-3f343c06f04e",
-				"method": "POST"
-			},
-			{
-				"id": "4452c8d9-3662-437d-9048-e89069229a15",
-				"method": "POST"
-			},
-			{
-				"id": "2fa345f6-6594-409f-937a-ba5e198fb9fb",
-				"method": "POST"
-			},
-			{
-				"id": "30eb5c33-e70d-4b5c-87d2-2c477be6ecac",
-				"method": "POST"
-			},
-			{
-				"id": "cffa337a-3e33-4f5a-85dd-f68bc17cf800",
-				"method": "POST"
+				"key": "token",
+				"value": "{{validToken}}",
+				"type": "string"
 			}
 		]
-	}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
 }

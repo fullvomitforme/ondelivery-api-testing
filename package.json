@@ -1,14 +1,17 @@
 {
-  "name": "api-ondelivery-testing",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "newman": "^5.3.2"
-  }
+	"name": "api-ondelivery-testing",
+	"module": "index.ts",
+	"type": "module",
+	"scripts": {
+		"api-tests": "newman run total_delivery_test.json -e testing_environment.json"
+	},
+	"devDependencies": {
+		"bun-types": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"newman": "^5.3.2"
+	}
 }
